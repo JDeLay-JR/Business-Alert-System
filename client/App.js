@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import history from './history'
-import {Main, ClientList} from "./components"
+import {Main, ClientList, Home, Individual} from "./components"
 
 //Import thunks from store
 import {fetchClients} from './store'
@@ -19,16 +19,10 @@ class App extends Component {
     return (
       <Router history={history}>
       <Main>
-        <Switch>
-          {/* Routes placed here are available to all visitors */}
-          {/* <Route path="/products/:productId" component={SingleProduct} />
-          <Route path="/categories/:categoryId" component={SingleCategory} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/cart" component={Cart} />
-          <Route exact path="/" component={HomePage} /> */}
-          <Route exact path ="/" component={ClientList} />
-        </Switch>
+          <Route path ="/clients/:id" component={Individual} />
+          <Route exact path ="/clients" component={ClientList} />
+          <Route exact path ="/home" component={Home} />
+          <Route exact path ="/" component={Home} />
       </Main>
     </Router>
     )
@@ -40,6 +34,7 @@ class App extends Component {
  */
 const mapState = (state) => {
   return {
+    clients: state.clients
   }
 }
 

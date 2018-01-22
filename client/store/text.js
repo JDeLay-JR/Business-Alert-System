@@ -1,12 +1,19 @@
 import axios from 'axios'
 
 
-export function postTextMessage (text) {
-  console.log("HIT POSTTEXT")
+export function broadcastTextMessage (text) {
   return function thunk() {
-    console.log("HIT THUNK")
-    console.log(text)
-    return axios.post('/api/text', text)
+    return axios.post('/api/text/broadcast', text)
     .then(res => console.log(res.data))
   }
 }
+
+export function postSingleText (text) {
+  console.log("Hit singleTextFunction")
+  return function thunk() {
+    console.log("hit thunk")
+    return axios.post('/api/text/singleText', text)
+    .then(res => console.log(res.data))
+  }
+}
+

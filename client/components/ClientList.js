@@ -10,13 +10,12 @@
         {
           clients.map(client => {
             return (
-              <div key={client.id}>
-                <span>
-                  <p>{`${client.firstName} ${client.lastName}`}</p>
-                  <p>{client.email}</p>
-                  <p>{client.phone}</p>
-                </span>
-              </div>
+              <NavLink to={`clients/${client.id}`} key={client.id}>
+                <div>
+                    <p>{client.email}</p>
+                    <p>{client.phone}</p>
+                </div>
+              </NavLink>
             )
           })
         }
