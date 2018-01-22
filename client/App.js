@@ -3,6 +3,11 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import history from './history'
 import {Main, ClientList, Home, Individual} from "./components"
+import Background from '../public/background.jpg';
+
+var sectionStyle = {
+  backgroundImage: `url(${Background})`
+};
 
 //Import thunks from store
 import {fetchClients} from './store'
@@ -17,6 +22,7 @@ class App extends Component {
 
   render () {
     return (
+      <section style={sectionStyle}>
       <Router history={history}>
       <Main>
           <Route path ="/clients/:id" component={Individual} />
@@ -24,7 +30,8 @@ class App extends Component {
           <Route exact path ="/home" component={Home} />
           <Route exact path ="/" component={Home} />
       </Main>
-    </Router>
+      </Router>
+      </section>
     )
   }
 }

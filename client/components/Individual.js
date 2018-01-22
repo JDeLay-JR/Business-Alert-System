@@ -2,17 +2,23 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter} from 'react-router-dom';
 import {postSingleText} from '../store'
+import { Grid, Cell } from "styled-css-grid";
 
 const IndividualClient = (props) => {
   const {client} = props
-  console.log(client)
   return (client[0]) ?
   (
     <div>
-      <h3>Message: {`${client[0].firstName} ${client[0].lastName}`}</h3>
+      <Grid columns={1}>
+        <Cell center><h3>{`${client[0].firstName} ${client[0].lastName}`}</h3></Cell>
+      </Grid>
       <form id="sendSingleMessage" onSubmit={props.sendText}>
-        <input name="message" type="text" placeholder="Enter your message..." required />
-        <button>Send Text</button>
+        <Grid columns={1}>
+          <Cell center><input name="message" type="text" placeholder="Enter your message..." required /></Cell>
+        </Grid>
+        <Grid columns={1}>
+          <Cell center><button>Send Text</button></Cell>
+        </Grid>
       </form>
     </div>
   )
