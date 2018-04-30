@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { NavLink, withRouter } from 'react-router-dom'
 import {ClientList} from './index'
 
 const Home = (props) => {
@@ -8,6 +8,9 @@ const Home = (props) => {
     <div>
       <p>You are home</p>
       <ClientList/>
+      <NavLink to='addClient'>
+        <button>Add Client</button>
+      </NavLink>
     </div>
   )
 }
