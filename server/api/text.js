@@ -1,13 +1,10 @@
 const router = require('express').Router()
-const TwilioConfig = require('../../secrets')
+const {twilioConfig, twilioNumber} = require('../../secrets')
 const {Client} = require('../db/models')
 var Twilio = require('twilio');
 
 //Connects to Twilio config variables in secret file
-var messageSender = new Twilio(TwilioConfig.accountSid, TwilioConfig.authToken);
-
-//Twillio Account Number Here
-const TWILLIONUMBER = '+15162523389'
+var messageSender = new Twilio(twilioConfig.accountSid, twilioConfig.authToken);
 
 module.exports = router;
 
@@ -18,7 +15,7 @@ router.post('/broadcast', (req, res, next) => {
       return messageSender.messages.create({
         body: req.body.message,
         to: client.phone,
-        from: TWILLIONUMBER
+        from: twilioNumber
       })
       .then((messageSent) => {
         console.log('Message send successful ' + messageSent.sid)
@@ -30,13 +27,13 @@ router.post('/broadcast', (req, res, next) => {
 })
 
 router.post('/singleText', (req, res, next) => {
-  let id = parseInt(req.body.id)
+  let id = parseInt(req.body.id, 0)
   Client.findById(id)
   .then(client => {
     return messageSender.messages.create({
       body: req.body.message,
       to: client.phone,
-      from: TWILLIONUMBER
+      from: twilioNumber
     })
     .then((messageSent) => {
       console.log('Message send successful ' + messageSent.sid)

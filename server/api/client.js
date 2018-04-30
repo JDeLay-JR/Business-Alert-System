@@ -3,7 +3,7 @@ const {Client} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Client.findAll({})
+  Client.findAll()
     .then(clients => res.json(clients))
     .catch(next)
 })

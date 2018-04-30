@@ -1,24 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { withRouter} from 'react-router-dom';
+import { connect } from 'react-redux'
+import { withRouter} from 'react-router-dom'
 import {postSingleText} from '../store'
-import { Grid, Cell } from "styled-css-grid";
 
 const IndividualClient = (props) => {
   const {client} = props
   return (client[0]) ?
   (
     <div>
-      <Grid columns={1}>
-        <Cell center><h3>{`${client[0].firstName} ${client[0].lastName}`}</h3></Cell>
-      </Grid>
+      <h3>{`${client[0].firstName} ${client[0].lastName}`}</h3>
       <form id="sendSingleMessage" onSubmit={props.sendText}>
-        <Grid columns={1}>
-          <Cell center><input name="message" type="text" placeholder="Enter your message..." required /></Cell>
-        </Grid>
-        <Grid columns={1}>
-          <Cell center><button>Send Text</button></Cell>
-        </Grid>
+          <input name="message" type="text" placeholder="Enter your message..." required />
+          <button>Send Text</button>
       </form>
     </div>
   )
@@ -30,7 +23,7 @@ const IndividualClient = (props) => {
 const mapStateToProps = function (state, ownProps) {
   return {
     client: state.clients.filter(client => {
-      if (client.id === parseInt(ownProps.match.params.id)) return client
+      if (client.id === parseInt(ownProps.match.params.id, 2)) return client
     })
     }
 }

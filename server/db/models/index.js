@@ -1,4 +1,8 @@
 const Client = require('./client')
+const User = require('./user')
+
+User.hasMany(Client)
+Client.belongsToMany(User, {through: 'UserClient'})
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,5 +18,6 @@ const Client = require('./client')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  Client
+  Client,
+  User
 }
