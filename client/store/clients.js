@@ -7,6 +7,7 @@ import history from '../history'
 const GET_ALL_CLIENTS = 'GET_ALL_CLIENTS'
 const ADD_NEW_CLIENT = 'ADD_NEW_CLIENT'
 const DELETE_CLIENT = 'DELETE_CLIENT'
+const UPDATE_CLIENT = 'UPDATE_CLIENT'
 
 /**
 * ACTION CREATORS
@@ -29,6 +30,13 @@ function deleteClient (id) {
   return {
     type: DELETE_CLIENT,
     id
+  }
+}
+
+function updateClient (updatedClient) {
+  return {
+    type: UPDATE_CLIENT,
+    updatedClient
   }
 }
 
@@ -68,6 +76,17 @@ export function removeClient (id) {
   }
 }
 
+export function putClient (client, id) {
+  return function thunk(dispatch) {
+    return axios.put(`/api/client/${id}`, client)
+    .then(res => res.data)
+    .then(clientToUpdate => {
+      const action = deleteClient(clientToUpdate)
+      return dispatch(action);
+    })
+  }
+}
+
 /**
  * REDUCER
  */
@@ -77,6 +96,8 @@ export default function (state = [], action) {
       return action.clients
     case ADD_NEW_CLIENT:
       return [...state, action.client]
+    case UPDATE_CLIENT:
+      return [...state, action.updatedClient]
     case DELETE_CLIENT:
       return state.filter(client => {
         if (client.id != action.id) {

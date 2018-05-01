@@ -1,23 +1,35 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import {postClient} from '../store'
 
-const AddClient = (props) => {
-  const {handleSubmit, user} = props
-  console.log(props)
-  return (
-    <div>
-      <h3>Add New Client</h3>
-      <form id='newUser' onSubmit={evt => handleSubmit(evt, user.id)}>
-        <input name='firstName' placeholder='First Name'/>
-        <input name='lastName' placeholder='Last Name'/>
-        <input name='email' placeholder='Email'/>
-        <input name='phone' placeholder='Phone'/>
-        <button>Submit</button>
-      </form>
-    </div>
-  )
+class AddClient extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      userId: this.props.user.id
+    }
+  }
+
+  render() {
+    const {handleSubmit, handleChange, user} = this.props
+    return (
+      <div>
+        <h3>Add New Client</h3>
+        <form id="newUser" onChange={evt => this.setState(handleChange(evt))} onSubmit={evt => handleSubmit(evt, this.state)}>
+          <input name="firstName" placeholder="First Name" />
+          <input name="lastName" placeholder="Last Name" />
+          <input name="email" placeholder="Email" />
+          <input name="phone" placeholder="Phone" />
+          <button>Submit</button>
+        </form>
+      </div>
+    )
+  }
 }
 
 //Connection to the Redux Store
@@ -29,17 +41,13 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit(evt, userId) {
+    handleChange(evt) {
+      return {[evt.target.name]: evt.target.value}
+    },
+    handleSubmit(evt, newClient) {
       let form = document.getElementById('newUser')
+      console.log(newClient)
       evt.preventDefault()
-      let newClient = {
-        firstName: evt.target.firstName.value,
-        lastName: evt.target.lastName.value,
-        email: evt.target.email.value,
-        phone: evt.target.phone.value,
-        userId
-      }
-      dispatch(postClient(newClient))
       form.reset();
     }
   }

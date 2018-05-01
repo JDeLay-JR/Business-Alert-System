@@ -22,7 +22,7 @@ function randUser() {
   return {
         email: 'test@test.com',
         password: 'test',
-        companyName: faker.lorem.word(),
+        companyName: faker.lorem.word().toUpperCase(),
   }
 }
 

@@ -21,6 +21,14 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/:id', (req, res, next) => {
+  console.log('Hit the put', req.body)
+  // const id= req.user.id
+  // Client.findAll({where: {id}})
+  //   .then(clients => res.json(clients))
+  //   .catch(next)
+})
+
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id
   Client.destroy({where: {id}})
