@@ -9,9 +9,9 @@ export function broadcastTextMessage (text) {
 }
 
 export function postSingleText (text) {
-  console.log("Hit singleTextFunction")
+  console.log('Hit singleTextFunction')
   return function thunk() {
-    console.log("hit thunk")
+    console.log('hit thunk')
     return axios.post('/api/text/singleText', text)
     .then(res => console.log(res.data))
   }

@@ -5,9 +5,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 //Import all reducers from reducer files
 import clients from './clients'
+import user from './user'
 
 //Combine all the reducers
-const reducer = combineReducers({clients})
+const reducer = combineReducers({clients, user})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -18,3 +19,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './clients'
 export * from './text'
+export * from './user'

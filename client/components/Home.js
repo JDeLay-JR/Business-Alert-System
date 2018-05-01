@@ -1,23 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { withRouter} from 'react-router-dom';
-import {broadcastTextMessage} from '../store'
-import { Grid, Cell } from 'styled-css-grid'
+import { connect } from 'react-redux'
+import { NavLink, withRouter } from 'react-router-dom'
+import {ClientList} from './index'
 
 const Home = (props) => {
   return (
     <div>
-      <Grid columns={1}>
-        <Cell center><h3>Mass Alert System</h3></Cell>
-      </Grid>
-      <form id="sendMessage" className="container" onSubmit={props.broadcastText}>
-        <Grid columns={1}>
-        <Cell center ><input name="message" type="text" placeholder="Enter your message..." required /></Cell>
-        </Grid>
-        <Grid columns={1}>
-          <Cell center><button>Broadcast Text</button></Cell>
-        </Grid>
-      </form>
+      <p>You are home</p>
+      <ClientList/>
+      <NavLink to='addClient'>
+        <button>Add Client</button>
+      </NavLink>
     </div>
   )
 }
@@ -29,20 +22,5 @@ const mapStateToProps = function (state) {
   }
 }
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    broadcastText(event) {
-      event.preventDefault();
-      const form = document.getElementById('sendMessage')
-      const text = {
-        message: event.target.message.value
-      }
-      console.log(text)
-      dispatch(broadcastTextMessage(text))
-      form.reset();
-    }
-  }
-}
-
-const HomeContainter = withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))
+const HomeContainter = withRouter(connect(mapStateToProps, null)(Home))
 export default HomeContainter;
