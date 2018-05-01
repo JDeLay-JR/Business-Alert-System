@@ -3,19 +3,22 @@ import { connect } from 'react-redux'
 import { withRouter} from 'react-router-dom'
 import {Home} from '../components'
 import {postSingleText, putClient} from '../store'
+import {validate} from '../../utils'
 
 class IndividualClient extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      updateClientInfo: false
+      updateClientInfo: false,
     }
   }
 
   render() {
-    const {client, sendText, updateClient} = this.props
+
+    const {client, sendText, handleSubmit, handleChange} = this.props
     const {updateClientInfo} = this.state
+
     return client ? (
       !updateClientInfo ? (
       <div>
@@ -32,9 +35,7 @@ class IndividualClient extends Component {
       (
       <div>
         <h1>{client.firstName} {client.lastName}</h1>
-        <p>{client.email}</p>
-        <p>{client.phone}</p>
-        <form id="clientUpdateForm" onSubmit={updateClient}>
+        <form id="clientUpdateForm" onSubmit={handleSubmit}>
           <input name="firstName" defaultValue={client.firstName} />
           <input name="lastName" defaultValue={client.lastName} />
           <input name="email" defaultValue={client.email} />
@@ -73,7 +74,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
       dispatch(postSingleText(text))
       form.reset();
     },
-    updateClient(event) {
+    handleSubmit(event) {
       event.preventDefault()
       let form = document.getElementById('clientUpdateForm')
       let updatedInfo = {
@@ -82,12 +83,8 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         email: event.target.email.value,
         phone: event.target.phone.value,
       }
-
-      if(updatedInfo.firstName === '' || updatedInfo.lastName === '' || updatedInfo.email === '' || updatedInfo.phone === '') {
-        alert('Input fields cannot be empty!')
-      } else {
-        dispatch(putClient(updatedInfo, ownProps.match.params.id))
-      }
+      dispatch(validate(updatedInfo, ownProps.match.params.id, putClient))
+      ownProps.history.push('/home')
     }
   }
 }

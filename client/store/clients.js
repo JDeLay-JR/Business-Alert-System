@@ -34,6 +34,7 @@ function deleteClient (id) {
 }
 
 function updateClient (updatedClient) {
+  console.log(updateClient)
   return {
     type: UPDATE_CLIENT,
     updatedClient
@@ -80,8 +81,8 @@ export function putClient (client, id) {
   return function thunk(dispatch) {
     return axios.put(`/api/client/${id}`, client)
     .then(res => res.data)
-    .then(clientToUpdate => {
-      const action = deleteClient(clientToUpdate)
+    .then(updatedClient => {
+      const action = updateClient(updatedClient)
       return dispatch(action);
     })
   }
@@ -97,7 +98,18 @@ export default function (state = [], action) {
     case ADD_NEW_CLIENT:
       return [...state, action.client]
     case UPDATE_CLIENT:
-      return [...state, action.updatedClient]
+      return state.filter(client => {
+        if (client.id != action.updatedClient.id) {
+          return client
+        } else {
+          client.firstName = action.updatedClient.firstName
+          client.lastName = action.updatedClient.lastName
+          client.email = action.updatedClient.email
+          client.phone = action.updatedClient.phone
+          return client
+        }
+      })
+
     case DELETE_CLIENT:
       return state.filter(client => {
         if (client.id != action.id) {

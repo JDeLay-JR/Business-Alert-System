@@ -21,12 +21,12 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:id', (req, res, next) => {
-  console.log('Hit the put', req.body)
-  // const id= req.user.id
-  // Client.findAll({where: {id}})
-  //   .then(clients => res.json(clients))
-  //   .catch(next)
+router.put('/:id', async (req, res, next) => {
+  const client = req.body
+  const id = req.params.id
+  await Client.update(client, {where: {id}})
+  const updatedClient = await Client.findOne({where: {id}})
+  res.send(updatedClient)
 })
 
 router.delete('/:id', (req, res, next) => {

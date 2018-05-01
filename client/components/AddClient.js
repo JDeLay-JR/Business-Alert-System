@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import { withRouter, NavLink } from 'react-router-dom';
 import {postClient} from '../store'
+import {validate} from '../../utils'
 
 class AddClient extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ const mapStateToProps = function (state) {
   }
 }
 
-const mapDispatchToProps = function (dispatch) {
+const mapDispatchToProps = function (dispatch, ownProps) {
   return {
     handleChange(evt) {
       return {[evt.target.name]: evt.target.value}
@@ -48,15 +49,7 @@ const mapDispatchToProps = function (dispatch) {
     handleSubmit(evt, newClient) {
       let form = document.getElementById('newUser')
       evt.preventDefault()
-      let validate = () => {
-        for (const key in newClient) {
-          if (!newClient[key]) {
-            return alert('Form cannot be empty!')
-          }
-        }
-        return dispatch(postClient(newClient))
-      }
-      validate()
+      dispatch(validate(newClient, null, postClient))
       form.reset();
     }
   }
