@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {twilioConfig, twilioNumber} = require('../../secrets')
+const {twilioConfig, twilioNumber, me} = require('../../secrets')
 const {Client} = require('../db/models')
 var Twilio = require('twilio');
 
@@ -14,7 +14,7 @@ router.post('/broadcast', (req, res, next) => {
     clients.map(client => {
       return messageSender.messages.create({
         body: req.body.message,
-        to: client.phone,
+        to: me,
         from: twilioNumber
       })
       .then((messageSent) => {
@@ -27,12 +27,11 @@ router.post('/broadcast', (req, res, next) => {
 })
 
 router.post('/singleText', (req, res, next) => {
-  let id = parseInt(req.body.id, 0)
-  Client.findById(id)
+  Client.findById(req.body.id)
   .then(client => {
     return messageSender.messages.create({
       body: req.body.message,
-      to: client.phone,
+      to: me,
       from: twilioNumber
     })
     .then((messageSent) => {

@@ -1,22 +1,28 @@
 const faker = require('faker');
 const Promise = require('bluebird');
 const db = require('../server/db')
-const { Client } = require('../server/db/models');
+const { Client, User } = require('../server/db/models');
 
 //Type in how many fake people to make
 const howManyToMake = 9;
+const howManyToMakeUser = 1;
 
 //Edit their fake info
 function randClient() {
-  let firstName = faker.name.firstName()
-  let lastName = faker.name.lastName()
-  let email = faker.internet.email();
-  let phone = "+15164580715"
   return {
-    firstName: firstName,
-    lastName: lastName,
-    email: email,
-    phone: phone
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    phone: faker.phone.phoneNumber(),
+    userId: 1
+  }
+}
+
+function randUser() {
+  return {
+        email: 'test@test.com',
+        password: 'test',
+        companyName: faker.lorem.word(),
   }
 }
 
@@ -30,18 +36,27 @@ function makeThisMany (number, callback) {
 }
 
 //GENERATE RANDOM PEOPLE
-function generate () {
+function generateClient () {
   const clients = makeThisMany(howManyToMake, randClient);
   return clients;
 }
 
+function generateUser () {
+  const user = makeThisMany(howManyToMakeUser, randUser)
+  return user;
+}
+
 //SAVE CREATED STUFF
-function create () {
-  return Promise.map(generate(), client => Client.create(client))
+function createUser () {
+  return Promise.map(generateUser(), user => User.create(user))
+}
+
+function createClient () {
+  return Promise.map(generateClient(), client => Client.create(client))
 }
 
 function seed () {
-  return Promise.all( [create()] )
+  return Promise.all( [createUser()] ).then(() => createClient())
 }
 
 console.log('Syncing database');

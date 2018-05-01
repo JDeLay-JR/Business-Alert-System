@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
-import {Login, Signup, Home, AddClient} from './components'
+import {Login, Signup, Home, AddClient, IndividualClient} from './components'
 import {me} from './store'
 
 /**
@@ -24,7 +24,8 @@ class Routes extends Component {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={Home} />
+              <Route exact path="/home" component={Home} />
+              <Route path='/clients/:id' component={IndividualClient} />
               <Route path="/addClient" component={AddClient} />
             </Switch>
         }

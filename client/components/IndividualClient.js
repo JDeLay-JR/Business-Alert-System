@@ -1,38 +1,43 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter} from 'react-router-dom'
+import {Home} from '../components'
 import {postSingleText} from '../store'
 
 const IndividualClient = (props) => {
-  const {client} = props
-  return (client[0]) ?
-  (
+  const {client, sendText} = props
+
+  return client ? (
     <div>
-      <h3>{`${client[0].firstName} ${client[0].lastName}`}</h3>
-      <form id="sendSingleMessage" onSubmit={props.sendText}>
-          <input name="message" type="text" placeholder="Enter your message..." required />
-          <button>Send Text</button>
-      </form>
+    <h1>{client.firstName} {client.lastName}</h1>
+    <p>{client.email}</p>
+    <p>{client.phone}</p>
+    <form id='individualUserMessage' onSubmit={sendText}>
+      <input name='message' placeholder='Write your message here...' />
+      <button>Submit</button>
+    </form>
     </div>
   )
-  :
-  <div />
+  //Handles weird case when user refreshes page and errors were thrown
+  : (<Home />)
 }
 
 //Connection to the Redux Store
 const mapStateToProps = function (state, ownProps) {
   return {
-    client: state.clients.filter(client => {
-      if (client.id === parseInt(ownProps.match.params.id, 2)) return client
+    client: state.clients.find(client => {
+      if (client.id == ownProps.match.params.id) {
+        return client
+      }
     })
-    }
+  }
 }
 
 const mapDispatchToProps = function(dispatch, ownProps) {
   return {
     sendText(event) {
       event.preventDefault();
-      const form = document.getElementById('sendSingleMessage')
+      const form = document.getElementById('individualUserMessage')
       const text = {
         message: event.target.message.value,
         id: ownProps.match.params.id

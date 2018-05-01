@@ -1,21 +1,22 @@
   import React from 'react'
   import { connect } from 'react-redux';
   import { withRouter, NavLink } from 'react-router-dom';
+  import {removeClient} from '../store'
 
   const ClientList = (props) => {
-    const {clients} = props
+    const {clients, handleDelete} = props
     return (
       <div>
         <h3>Client List</h3>
           {
             clients.map(client => {
               return (
-                  <NavLink key={client.id} to={`clients/${client.id}`}>
-                    <div className="clientListElement">
-                        <h4>{`${client.firstName} ${client.lastName}`}</h4>
-                    </div>
+                <div key={client.id}>
+                  <NavLink to={`clients/${client.id}`}>
+                    <h4>{`${client.firstName} ${client.lastName}`}</h4>
                   </NavLink>
-
+                  <button onClick={() => handleDelete(client.id)}>X</button>
+                </div>
               )
             })
           }
@@ -29,6 +30,13 @@
       clients: state.clients
     }
   }
+  const mapDispatchToProps = function (dispatch) {
+    return {
+      handleDelete(id) {
+        dispatch(removeClient(id))
+      }
+    }
+  }
 
-const ClientListContainter = withRouter(connect(mapStateToProps)(ClientList))
+const ClientListContainter = withRouter(connect(mapStateToProps, mapDispatchToProps)(ClientList))
 export default ClientListContainter;

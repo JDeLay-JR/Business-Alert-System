@@ -6,7 +6,7 @@
 export {default as NavBar} from './NavBar'
 export {default as ClientList} from './ClientList'
 export {default as Home} from './Home'
-export {default as Individual} from './Individual'
+export {default as IndividualClient} from './IndividualClient'
 export {Login, Signup} from './AuthForm'
 export {default as Footer} from './Footer'
 export {default as AddClient} from './AddClient'

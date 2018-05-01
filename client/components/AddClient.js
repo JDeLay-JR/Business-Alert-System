@@ -30,15 +30,17 @@ const mapStateToProps = function (state) {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleSubmit(evt, userId) {
+      let form = document.getElementById('newUser')
       evt.preventDefault()
       let newClient = {
-      firstName: evt.target.firstName.value,
-      lastName: evt.target.lastName.value,
-      email: evt.target.email.value,
-      phone: evt.target.phone.value,
-      userId
+        firstName: evt.target.firstName.value,
+        lastName: evt.target.lastName.value,
+        email: evt.target.email.value,
+        phone: evt.target.phone.value,
+        userId
       }
-      return dispatch(postClient(newClient))
+      dispatch(postClient(newClient))
+      form.reset();
     }
   }
 }

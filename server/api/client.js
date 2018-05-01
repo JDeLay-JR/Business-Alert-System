@@ -15,10 +15,16 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  //TODO:  {where: {userId: req.body.userId}}
-  //HAVE CLIENTS LOAD ON INITIAL DATA
-  Client.findAll()
+  const userId = req.user.id
+  Client.findAll({where: {userId}})
     .then(clients => res.json(clients))
+    .catch(next)
+})
+
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id
+  Client.destroy({where: {id}})
+    .then(() => res.json(id))
     .catch(next)
 })
 
