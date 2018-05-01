@@ -11,9 +11,9 @@ const Navbar = ({ handleClick, isLoggedIn, companyName }) => (
           <h2>Management Dashboard</h2>
           <nav>
             <div>
-              <Link to="/home">Home</Link>
+              <Link to="/home"><button>Home</button></Link>
               <a href="#" onClick={handleClick}>
-                Logout
+                <button>Logout</button>
               </a>
             </div>
           </nav>
