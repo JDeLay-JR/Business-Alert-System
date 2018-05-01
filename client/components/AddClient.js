@@ -16,6 +16,7 @@ class AddClient extends Component {
   }
 
   render() {
+    console.log(this.state)
     const {handleSubmit, handleChange, user} = this.props
     return (
       <div>
@@ -46,8 +47,16 @@ const mapDispatchToProps = function (dispatch) {
     },
     handleSubmit(evt, newClient) {
       let form = document.getElementById('newUser')
-      console.log(newClient)
       evt.preventDefault()
+      let validate = () => {
+        for (const key in newClient) {
+          if (!newClient[key]) {
+            return alert('Form cannot be empty!')
+          }
+        }
+        return dispatch(postClient(newClient))
+      }
+      validate()
       form.reset();
     }
   }
