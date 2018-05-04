@@ -15,7 +15,7 @@
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' mocha ./tests/**/*.spec.js --require @babel/polyfill --require @babel/register"
+    "test": "NODE_ENV='test' mocha ./tests/**/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
   "author": "James DeLay",
   "license": "ISC",
@@ -23,6 +23,7 @@
     "axios": "^0.15.3",
     "bluebird": "^3.5.1",
     "body-parser": "^1.16.1",
+    "chai-http": "^4.0.0",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
     "css-loader": "^0.28.9",

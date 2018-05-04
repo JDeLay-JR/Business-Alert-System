@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import {Login, Signup, Home, AddClient, IndividualClient} from './components'
-import {me} from './store'
+import {me, fetchClients} from './store'
 
 /**
  * COMPONENT
@@ -47,7 +47,7 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     loadInitialData () {
       dispatch(me())

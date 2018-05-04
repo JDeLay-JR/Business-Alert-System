@@ -68,7 +68,7 @@ const mapDispatch = (dispatch) => {
           </div>
         )
       } else {
-        return (<div/>)
+        return (<div />)
       }
     }
   }

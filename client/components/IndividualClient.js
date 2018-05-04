@@ -26,7 +26,7 @@ class IndividualClient extends Component {
         <p>{client.email}</p>
         <p>{client.phone}</p>
         <form id="individualUserMessage" onSubmit={sendText}>
-          <input name="message" placeholder="Write your message here..." />
+          <textarea name="message" placeholder="Write your message here..." />
           <button>Submit</button>
         </form>
         <button onClick= {() => this.setState({updateClientInfo: true})}>Update Client Information</button>
@@ -84,6 +84,7 @@ const mapDispatchToProps = function(dispatch, ownProps) {
         phone: event.target.phone.value,
       }
       dispatch(validate(updatedInfo, ownProps.match.params.id, putClient))
+      form.reset()
       ownProps.history.push('/home')
     }
   }

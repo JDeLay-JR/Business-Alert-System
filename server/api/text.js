@@ -14,7 +14,7 @@ router.post('/broadcast', (req, res, next) => {
     clients.map(client => {
       return messageSender.messages.create({
         body: req.body.message,
-        to: me,
+        to: me, //client.phone for production
         from: twilioNumber
       })
       .then((messageSent) => {
@@ -31,7 +31,7 @@ router.post('/singleText', (req, res, next) => {
   .then(client => {
     return messageSender.messages.create({
       body: req.body.message,
-      to: me,
+      to: me, //client.phone for production
       from: twilioNumber
     })
     .then((messageSent) => {

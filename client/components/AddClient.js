@@ -17,12 +17,11 @@ class AddClient extends Component {
   }
 
   render() {
-    console.log(this.state)
-    const {handleSubmit, handleChange, user} = this.props
+    const {handleSubmit, handleChange} = this.props
     return (
       <div>
         <h3>Add New Client</h3>
-        <form id="newUser" onChange={evt => this.setState(handleChange(evt))} onSubmit={evt => handleSubmit(evt, this.state)}>
+        <form onChange={evt => this.setState(handleChange(evt))} onSubmit={evt => handleSubmit(evt, this.state)}>
           <input name="firstName" placeholder="First Name" />
           <input name="lastName" placeholder="Last Name" />
           <input name="email" placeholder="Email" />
@@ -41,13 +40,13 @@ const mapStateToProps = function (state) {
   }
 }
 
-const mapDispatchToProps = function (dispatch, ownProps) {
+const mapDispatchToProps = function (dispatch) {
   return {
     handleChange(evt) {
       return {[evt.target.name]: evt.target.value}
     },
     handleSubmit(evt, newClient) {
-      let form = document.getElementById('newUser')
+      let form = document.getElementById('resizeable"')
       evt.preventDefault()
       dispatch(validate(newClient, null, postClient))
       form.reset();

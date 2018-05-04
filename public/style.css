@@ -1,0 +1,29 @@
+:root {
+  --black: #2a2a2a;
+  --red: #b31d1d;
+  --white: #f0f0f0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--red)
+}
+
+h1,
+h2,
+h3 {
+  color: var(--black)
+}
+
+#navbar {
+  background-image: url('./topography.svg')
+  , linear-gradient(rgba(122, 112, 112, 0.815), var(--white))
+}
+
+.container {
+  display: flex;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

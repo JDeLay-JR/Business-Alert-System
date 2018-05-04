@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { NavLink, withRouter } from 'react-router-dom'
-import {ClientList} from './index'
+import {ClientList, MassAlert} from './index'
 import {fetchClients} from '../store'
 
 class Home extends Component {
@@ -13,10 +13,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <ClientList/>
-        <NavLink to='addClient'>
+        <ClientList />
+        <NavLink to="addClient">
           <button>Add Client</button>
         </NavLink>
+        <MassAlert />
       </div>
     )
   }
