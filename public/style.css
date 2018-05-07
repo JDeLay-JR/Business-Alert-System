@@ -1,29 +1,136 @@
 :root {
-  --black: #2a2a2a;
-  --red: #b31d1d;
-  --white: #f0f0f0;
   font-family: Arial, Helvetica, sans-serif;
-  color: var(--red)
 }
 
-h1,
-h2,
-h3 {
-  color: var(--black)
+#app {
+  width: 100vw;
+  height: 100vh;
 }
 
-#navbar {
-  background-image: url('./topography.svg')
-  , linear-gradient(rgba(122, 112, 112, 0.815), var(--white))
+
+html {
+  margin: 0;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
-.container {
+.containerCol {
   display: flex;
-}
-
-.center {
-  display: flex;
+  text-align: center;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+.containerRow {
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.containerGrid {
+  display: grid;
+  width: 75vw;
+  grid-template-columns: 1fr 1fr;;
+}
+
+.gridItem {
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/********************** Navbar  **********************/
+.navbar {
+  position: fixed;
+  width: 100vw;
+  background-color: gray;
+}
+
+.navh1,
+.navh2 {
+  margin-top: 0px;
+}
+
+/********************** Footer **********************/
+
+.footer {
+  text-align: center;
+  bottom: 0px;
+  width: 100vw;
+  font-size: 10px;
+}
+
+/********************** AuthForm **********************/
+
+.authFormComponentContainer {
+  height: 100vh;
+  width: 100vw;
+}
+
+.authForm {
+  border-style: solid;
+  border-radius: 5%;
+  border-color: black;
+  border-width: 1px;
+  flex-grow: .3;
+}
+
+.authInput {
+  margin: 25px;
+}
+
+.authInputBottom {
+  margin-bottom: 40px;
+}
+
+.authFormButton {
+  width: 15em;
+}
+
+/********************** HomeComponent **********************/
+.homeComponent {
+  width: 100vw;
+}
+/********************** ClientList **********************/
+
+.clientListComponent {
+  padding-top: 19vh;
+  padding-left: 25vw;
+  width: 75vw;
+  text-align: center;
+}
+
+#addClientButton {
+  width: 7vw;
+  height: 5vh;
+}
+
+#clientHeader {
+  padding-top: 5vh;
+  position: fixed;
+}
+
+/********************** MassAlert **********************/
+.massAlertComponent {
+  padding-top: 22vh;
+  position: fixed;
+}
+
+#massAlertMessage {
+  margin-top: 1vh;
+  width: 25vw;
+  height: 50vh;
+  padding-left: 5px;
+}
+
+#massAlertSendButton {
+  margin-top: 1vh;
+  height: 5vh;
+  width: 7vw;
+  margin-bottom: 3vh;
+}

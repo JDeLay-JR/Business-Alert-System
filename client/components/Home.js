@@ -12,12 +12,11 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <ClientList />
-        <NavLink to="addClient">
-          <button>Add Client</button>
-        </NavLink>
+      <div className="containerGrid">
         <MassAlert />
+        <ClientList />
+        <div className="containerCol">
+        </div>
       </div>
     )
   }

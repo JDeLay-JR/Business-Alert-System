@@ -6,12 +6,15 @@
   const ClientList = (props) => {
     const {clients, handleDelete} = props
     return (
-      <div>
-        <h3>Client List</h3>
+      <div className="clientListComponent">
+        <div className="containerRow">
+          <h3 id="clientHeader">Client List</h3>
+        </div>
+        <div className="containerGrid">
           {
             clients.map(client => {
               return (
-                <div key={client.id}>
+                <div className="gridItem" key={client.id}>
                   <NavLink to={`clients/${client.id}`}>
                     <h4>{`${client.firstName} ${client.lastName}`}</h4>
                   </NavLink>
@@ -20,6 +23,7 @@
               )
             })
           }
+        </div>
       </div>
     )
   }

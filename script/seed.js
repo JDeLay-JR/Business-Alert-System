@@ -4,10 +4,10 @@ const db = require('../server/db')
 const { Client, User } = require('../server/db/models');
 
 //Type in how many fake people to make
-const howManyToMake = 9;
+const howManyToMake = 19;
 const howManyToMakeUser = 1;
 
-//Edit their fake info
+//Edit their fake info3
 function randClient() {
   return {
     firstName: faker.name.firstName(),
