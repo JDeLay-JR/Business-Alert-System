@@ -14,6 +14,7 @@ function randClient() {
     lastName: faker.name.lastName(),
     email: faker.internet.email(),
     phone: faker.phone.phoneNumber(),
+    img: 'https://picsum.photos/g/150/150',
     userId: 1
   }
 }
@@ -60,7 +61,6 @@ function seed () {
 }
 
 console.log('Syncing database');
-
 db.sync({force: true})
   .then(() => {
     console.log('Seeding database');

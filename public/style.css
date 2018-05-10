@@ -1,136 +1,221 @@
-:root {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-#app {
-  width: 100vw;
-  height: 100vh;
-}
-
-
 html {
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
+body {
+  margin: 0;
 }
-
-.containerCol {
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.containerRow {
-  display: flex;
-  text-align: center;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.containerGrid {
+.appContainerGrid {
   display: grid;
-  width: 75vw;
-  grid-template-columns: 1fr 1fr;;
-}
-
-.gridItem {
-  align-content: center;
-  justify-content: center;
-  text-align: center;
-}
-
-/********************** Navbar  **********************/
-.navbar {
-  position: fixed;
+  height: 99vh;
   width: 100vw;
-  background-color: gray;
+  grid-template-rows: 1fr 6fr 1fr;
 }
 
-.navh1,
-.navh2 {
+/* ************** NavBar ************** */
+.navbar {
+  grid-row: 1;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-left: 0px;
+  margin-right: 0px;
   margin-top: 0px;
 }
 
-/********************** Footer **********************/
+.navContent {
+  text-align: center;
+}
+
+/* ************** Footer ************** */
 
 .footer {
+  grid-row: 3;
   text-align: center;
-  bottom: 0px;
-  width: 100vw;
   font-size: 10px;
 }
 
-/********************** AuthForm **********************/
+/* ************** Home ************** */
 
-.authFormComponentContainer {
-  height: 100vh;
-  width: 100vw;
+.homeContainerGrid {
+  grid-row: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-.authForm {
-  border-style: solid;
-  border-radius: 5%;
-  border-color: black;
-  border-width: 1px;
-  flex-grow: .3;
-}
+/* ************** ClientList ************** */
 
-.authInput {
-  margin: 25px;
-}
-
-.authInputBottom {
-  margin-bottom: 40px;
-}
-
-.authFormButton {
-  width: 15em;
-}
-
-/********************** HomeComponent **********************/
-.homeComponent {
-  width: 100vw;
-}
-/********************** ClientList **********************/
-
-.clientListComponent {
-  padding-top: 19vh;
-  padding-left: 25vw;
-  width: 75vw;
+.clientListViewContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  justify-self: center;
+  align-content: center;
+  align-items: center;
   text-align: center;
 }
 
-#addClientButton {
-  width: 7vw;
-  height: 5vh;
+.clientListHeader {
+  text-align: center;
 }
 
-#clientHeader {
-  padding-top: 5vh;
-  position: fixed;
+.clientListGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-/********************** MassAlert **********************/
-.massAlertComponent {
-  padding-top: 22vh;
-  position: fixed;
+#clientListButton {
+  margin: 2vh;
+  height: 3vh;
+  width: 10vw;
+}
+
+/* ************** MassAlert ************** */
+
+.massAlertForm {
+  display: flex;
+  margin: 1vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #massAlertMessage {
-  margin-top: 1vh;
-  width: 25vw;
-  height: 50vh;
-  padding-left: 5px;
+  height: 40vh;
+  width: 50vw;
 }
 
-#massAlertSendButton {
-  margin-top: 1vh;
-  height: 5vh;
-  width: 7vw;
-  margin-bottom: 3vh;
+.massAlertButton {
+  margin: 4vh;
+  height: 4vh;
+  width: 9vw;
 }
+
+
+/* ************** AuthForm ************** */
+.authFormContainer {
+  grid-row-start: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.authFormInput {
+  margin: 4vw;
+}
+
+.authFormButton {
+  margin: 4vh;
+  width: 20vw;
+}
+
+/* ************** IndividualClient ************** */
+
+.individualClientContainer {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
+
+#individualUserMessage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#individualUserSendMessageButton {
+  width: 10vw;
+  height: 5vh;
+  margin-top: 3vh;
+}
+
+#individualUserMessageTextArea {
+  height: 50vh;
+  width: 30vw;
+}
+
+/* ************ IndividualClient => UpdateClient ************ */
+
+.updateClientContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+#clientUpdateForm {
+  grid-column-start: 2;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  border-radius: 25px;
+  border-style: double;
+}
+
+.clientUpdateInputs {
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  height: 5vh;
+  width: 45vh;
+  align-self: center;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.clientUpdateButton {
+  height: 5vh;
+  width: 17vw;
+  align-self: center;
+  font-size: 0rem;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  border-radius: 25px;
+}
+
+/* ************ NewClient ************ */
+
+.newClientContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  align-items: center;
+}
+
+.newClientForm {
+  grid-column-start: 2;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.newClientInputs {
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  height: 5vh;
+  width: 45vh;
+  align-self: center;
+}
+
+.newClientButton {
+  height: 5vh;
+  width: 17vw;
+  align-self: center;
+  margin-top: 3vh;
+}
+

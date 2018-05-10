@@ -10,37 +10,43 @@ class IndividualClient extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      updateClientInfo: false,
+      updateClientInfo: true,
     }
   }
-
+k
   render() {
 
-    const {client, sendText, handleSubmit, handleChange} = this.props
+    const {client, sendText, handleSubmit} = this.props
     const {updateClientInfo} = this.state
 
     return client ? (
       !updateClientInfo ? (
-      <div>
-        <h1>{client.firstName} {client.lastName}</h1>
-        <p>{client.email}</p>
-        <p>{client.phone}</p>
-        <form id="individualUserMessage" onSubmit={sendText}>
-          <textarea name="message" placeholder="Write your message here..." />
-          <button>Submit</button>
-        </form>
+      <div className="individualClientContainer">
+        <div className="individualClientInfo">
+          <h1>{client.firstName} {client.lastName}</h1>
+          <img src={client.img} />
+          <p>{client.email}</p>
+          <p>{client.phone}</p>
         <button onClick= {() => this.setState({updateClientInfo: true})}>Update Client Information</button>
+        </div>
+
+        <form id="individualUserMessage" onSubmit={sendText}>
+          <textarea
+          id="individualUserMessageTextArea"
+          name="message" placeholder="Write your message here..." />
+          <button id="individualUserSendMessageButton">Send</button>
+        </form>
       </div>
       ) :
       (
-      <div>
-        <h1>{client.firstName} {client.lastName}</h1>
+      <div className="updateClientContainer">
         <form id="clientUpdateForm" onSubmit={handleSubmit}>
-          <input name="firstName" defaultValue={client.firstName} />
-          <input name="lastName" defaultValue={client.lastName} />
-          <input name="email" defaultValue={client.email} />
-          <input name="phone" defaultValue={client.phone} />
-          <button>Update Information</button>
+          <h1>{client.firstName} {client.lastName}</h1>
+          <input className="clientUpdateInputs" name="firstName" defaultValue={client.firstName} />
+          <input className="clientUpdateInputs" name="lastName" defaultValue={client.lastName} />
+          <input className="clientUpdateInputs" name="email" defaultValue={client.email} />
+          <input className="clientUpdateInputs" name="phone" defaultValue={client.phone} />
+          <button className="clientUpdateButton">Update Information</button>
         </form>
       </div>
       )

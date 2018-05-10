@@ -6,19 +6,20 @@
   const ClientList = (props) => {
     const {clients, handleDelete} = props
     return (
-      <div className="clientListComponent">
-        <div className="containerRow">
-          <h3 id="clientHeader">Client List</h3>
+      <div className="clientListContainerGrid">
+        <div className="clientListHeader">
+          <h2>Client List</h2>
         </div>
-        <div className="containerGrid">
+        <div className="clientListGrid">
           {
             clients.map(client => {
               return (
-                <div className="gridItem" key={client.id}>
-                  <NavLink to={`clients/${client.id}`}>
-                    <h4>{`${client.firstName} ${client.lastName}`}</h4>
+                <div key={client.id} className="clientListViewContainer" >
+                  <NavLink className="clientListView" key={client.id} to={`clients/${client.id}`}>
+                    <h3>{`${client.firstName} ${client.lastName}`}</h3>
+                    <img src={client.img} />
                   </NavLink>
-                  <button onClick={() => handleDelete(client.id)}>X</button>
+                  <button id="clientListButton" onClick={() => handleDelete(client.id)}>Delete Client</button>
                 </div>
               )
             })

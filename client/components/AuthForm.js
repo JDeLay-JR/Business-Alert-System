@@ -6,23 +6,25 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error, displayCompanyInput} = props
 
   return (
-    <div className="authFormComponentContainer containerCol">
-      <form className="authForm containerCol" onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><aside>Email</aside></label>
-          <input className="authInput" name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"><aside>Password</aside></label>
-          <input className="authInput authInputBottom" name="password" type="password" />
-        </div>
-        {displayCompanyInput(displayName)}
-        <div className="containerCol">
-          <button className="authFormButton" type="submit">{displayName}</button>
-          <button className="authFormButton" href="/auth/google">{displayName} with Google</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
+    <div className="authFormContainer">
+      <form zDepth={4} className="authForm" onSubmit={handleSubmit} name={name}>
+
+        <div className="authFormInput">
+            <label htmlFor="email"><aside id="emailLabel">Email</aside></label>
+            <input name="email" type="text" />
+          </div>
+          <div className="authFormInput">
+            <label htmlFor="password"><aside id="passwordLabel">Password</aside></label>
+            <input name="password" type="password" />
+          </div>
+          {displayCompanyInput(displayName)}
+          <div className="containerCol">
+            <button className="authFormButton" type="submit">{displayName}</button>
+            <button className="authFormButton" href="/auth/google">{displayName} with Google</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
       </form>
+
     </div>
   )
 }
@@ -62,8 +64,8 @@ const mapDispatch = (dispatch) => {
     displayCompanyInput (displayName) {
       if (displayName === 'Sign Up') {
         return (
-          <div>
-            <label htmlFor="companyName"><small>Company Name</small></label>
+          <div className="authFormInput">
+            <label htmlFor="companyName"><aside>Company Name</aside></label>
             <input name="companyName" type="companyName" />
           </div>
         )

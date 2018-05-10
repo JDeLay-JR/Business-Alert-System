@@ -7,12 +7,13 @@ import {postMassText} from '../store'
 const MassAlert = (props) => {
   const {sendText} = props
   return (
-    <div className="massAlertComponent">
-      <form className="containerCol" id="massAlert" onSubmit={event => sendText(event)}>
+    <div className="massAlertForm">
+      <form className="massAlertForm" onSubmit={event => sendText(event)}>
+        <h2>Broadcast Message</h2>
         <textarea id="massAlertMessage" name="message" placeholder="Write your message..." />
-        <button id="massAlertSendButton">Send</button>
+        <button className="massAlertButton">Send</button>
         <NavLink to="addClient">
-            <button id="addClientButton">Add Client</button>
+            <button className="massAlertButton">Add Client</button>
         </NavLink>
       </form>
     </div>

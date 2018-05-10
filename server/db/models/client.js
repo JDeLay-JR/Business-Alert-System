@@ -21,6 +21,9 @@ const Client = db.define('client', {
   },
   phone: {
     type: Sequelize.STRING
+  },
+  img: {
+    type: Sequelize.STRING
   }
 })
 

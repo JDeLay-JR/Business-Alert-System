@@ -19,14 +19,14 @@ class AddClient extends Component {
   render() {
     const {handleSubmit, handleChange} = this.props
     return (
-      <div>
-        <h3>Add New Client</h3>
-        <form onChange={evt => this.setState(handleChange(evt))} onSubmit={evt => handleSubmit(evt, this.state)}>
-          <input name="firstName" placeholder="First Name" />
-          <input name="lastName" placeholder="Last Name" />
-          <input name="email" placeholder="Email" />
-          <input name="phone" placeholder="Phone" />
-          <button>Submit</button>
+      <div className="newClientContainer">
+        <form className="newClientForm" onChange={evt => this.setState(handleChange(evt))} onSubmit={evt => handleSubmit(evt, this.state)}>
+          <h1>Add New Client</h1>
+          <input className="newClientInputs" name="firstName" placeholder="First Name" />
+          <input className="newClientInputs" name="lastName" placeholder="Last Name" />
+          <input className="newClientInputs" name="email" placeholder="Email" />
+          <input className="newClientInputs" name="phone" placeholder="Phone" />
+          <button className="newClientButton">Submit</button>
         </form>
       </div>
     )
