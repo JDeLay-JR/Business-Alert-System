@@ -1,17 +1,69 @@
+:root {
+  --black: #272727;
+  --black-hover: #363636;
+}
+
 html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Century Gothic';
+  background-image: url('intersection.png');
 }
+
 body {
   margin: 0;
 }
+
 .appContainerGrid {
   display: grid;
   height: 99vh;
   width: 100vw;
   grid-template-rows: 1fr 6fr 1fr;
+}
+/* ************** Common ************** */
+
+button {
+  cursor: pointer;
+  background-color: var(--black);
+  color: #ffffff;
+  font-size: medium;
+  border-color: var(--black);
+  box-shadow: var(--black);
+}
+
+button:hover {
+  background-color: var(--black-hover);
+}
+
+img {
+  border-radius: 50%;
+}
+
+textarea {
+  border: none;
+  box-shadow: 0px 0px 14px 1px var(--black);
+}
+
+textarea:focus {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #024188;
+}
+
+input {
+  padding-bottom: 1vh;
+  border: 0;
+  border-bottom: 1px solid var(--black);
+  font-size: 20px;
+  outline: 0;
+  background: transparent;
+  box-shadow: var(--black);
+  text-align: center;
+}
+
+input:focus {
+  border-bottom: 3px solid #024188;
 }
 
 /* ************** NavBar ************** */
@@ -24,16 +76,84 @@ body {
   margin-left: 0px;
   margin-right: 0px;
   margin-top: 0px;
+  border-radius: 0;
+  border-bottom: 1px solid #bbb;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  background-color: var(--black);
+  color: #ffffff;
+}
+
+.signInNavBarButtonContainer,
+.loggedInNavBarButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.signInNavBarButton {
+  width: 7vw;
+  height: 12vh;
+  border-color: #ffffff;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 0;
+  text-align: center;
+  font-size: larger;
+}
+
+.loggedInNavBarButton {
+  width: 9vw;
+  height: 12vh;
+  border-color: #ffffff;
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 0;
+  text-align: center;
+  font-size: larger;
+}
+
+
+.signInNavBarButton:hover,
+.loggedInNavBarButton:hover {
+  background-color: var(--black-hover);
 }
 
 .navContent {
-  text-align: center;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.navContent h1{
+  margin-left: .3vw;
+  text-shadow: 2px 2px black;
+  letter-spacing: 2px;
+}
+
+link {
+  text-decoration: none;
+}
+
+.navh1,
+.navh3 {
+  margin-top: 1vh;
+  margin-left: 1vh;
+  margin-bottom: 0vh;
 }
 
 /* ************** Footer ************** */
 
 .footer {
+  position: fixed;
+  left:0px;
+  bottom:0px;
+  width: 100vw;
   grid-row: 3;
+  height: 5vh;
+  align-content: center;
   text-align: center;
   font-size: 10px;
 }
@@ -95,8 +215,13 @@ body {
 
 .massAlertButton {
   margin: 4vh;
-  height: 4vh;
-  width: 9vw;
+  height: 8vh;
+  width: 18vw;
+}
+
+.massAlertButtonContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -109,13 +234,30 @@ body {
   text-align: center;
 }
 
+.authForm {
+  background-color: #272727a1;
+  box-shadow: 0px 0px 10px 5px var(--black)
+}
+
+.authFormLabel {
+  font-size: x-large;
+  margin-bottom: 3vh;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
 .authFormInput {
   margin: 4vw;
 }
 
 .authFormButton {
   margin: 4vh;
-  width: 20vw;
+  width: 12vw;
+  height: 3vw;
+}
+
+.authFormButton:hover {
+  background-color: var(--black-hover);
 }
 
 /* ************** IndividualClient ************** */
@@ -181,10 +323,6 @@ body {
   height: 5vh;
   width: 17vw;
   align-self: center;
-  font-size: 0rem;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
-  border-radius: 25px;
 }
 
 /* ************ NewClient ************ */

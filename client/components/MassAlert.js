@@ -9,12 +9,12 @@ const MassAlert = (props) => {
   return (
     <div className="massAlertForm">
       <form className="massAlertForm" onSubmit={event => sendText(event)}>
-        <h2>Broadcast Message</h2>
+        <h1>Broadcast Message</h1>
+        <p>Write a message to broadcast to your clients via text.</p>
         <textarea id="massAlertMessage" name="message" placeholder="Write your message..." />
-        <button className="massAlertButton">Send</button>
-        <NavLink to="addClient">
-            <button className="massAlertButton">Add Client</button>
-        </NavLink>
+        <div className="massAlertButtonContainer">
+          <button className="massAlertButton">Send</button>
+        </div>
       </form>
     </div>
   )

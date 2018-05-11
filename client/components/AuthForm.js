@@ -7,14 +7,14 @@ const AuthForm = (props) => {
 
   return (
     <div className="authFormContainer">
-      <form zDepth={4} className="authForm" onSubmit={handleSubmit} name={name}>
+      <form className="authForm" onSubmit={handleSubmit} name={name}>
 
         <div className="authFormInput">
-            <label htmlFor="email"><aside id="emailLabel">Email</aside></label>
-            <input name="email" type="text" />
+            <label htmlFor="email"><aside className="authFormLabel">Email</aside></label>
+            <input name="email"  type="text" />
           </div>
           <div className="authFormInput">
-            <label htmlFor="password"><aside id="passwordLabel">Password</aside></label>
+            <label htmlFor="password"><aside className="authFormLabel">Password</aside></label>
             <input name="password" type="password" />
           </div>
           {displayCompanyInput(displayName)}

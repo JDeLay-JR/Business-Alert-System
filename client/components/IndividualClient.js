@@ -47,6 +47,7 @@ k
           <input className="clientUpdateInputs" name="email" defaultValue={client.email} />
           <input className="clientUpdateInputs" name="phone" defaultValue={client.phone} />
           <button className="clientUpdateButton">Update Information</button>
+          <button className="clientUpdateButton">Delete Client</button>
         </form>
       </div>
       )

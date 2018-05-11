@@ -8,7 +8,7 @@
     return (
       <div className="clientListContainerGrid">
         <div className="clientListHeader">
-          <h2>Client List</h2>
+          <h1>Client List</h1>
         </div>
         <div className="clientListGrid">
           {
@@ -19,7 +19,6 @@
                     <h3>{`${client.firstName} ${client.lastName}`}</h3>
                     <img src={client.img} />
                   </NavLink>
-                  <button id="clientListButton" onClick={() => handleDelete(client.id)}>Delete Client</button>
                 </div>
               )
             })
