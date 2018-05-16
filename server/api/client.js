@@ -26,6 +26,7 @@ router.put('/:id', async (req, res, next) => {
   const id = req.params.id
   await Client.update(client, {where: {id}})
   const updatedClient = await Client.findOne({where: {id}})
+  console.log(updatedClient)
   res.send(updatedClient)
 })
 

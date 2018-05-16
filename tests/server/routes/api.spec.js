@@ -10,39 +10,37 @@ const Client = db.model('client')
 
 describe('API Routes', () => {
 
-  let user, client
   let authenticatedUser = request.agent(server);
 
   beforeEach(async () => {
-    await db.sync({force: true})
+  await db.sync({force: true})
 
-    user = await User.create({
+  await User.create({
           email: 'test@test.com',
           password: 'test',
           companyName: 'Test Inc'
     })
 
-    client = await Client.create({
+  await Client.create({
           firstName: "Marty",
           lastName: "McFly",
           email: "doc@hover.com",
           phone: "1234567890",
           userId: 1
         })
-  })
 
-    // authenticatedUser
-    //   .post('/auth/login')
-    //   .send({email: 'test@test.com', password: 'test'})
-    //   .end(res => {
-    //     expect(res.statusCode).to.equal(200);
-    //     expect('Location', '/home');
-    //     done();
-    //   });
+    await Client.create({
+          firstName: "Clark",
+          lastName: "Kent",
+          email: "super@man.com",
+          phone: "1234567890",
+          userId: 1
+        })
+  })
 
   describe('/POST a new client', () => {
     it('can create a new client', () => {
-      request(server)
+      request(authenticatedUser)
         .post('/api/client')
         .send({
           firstName: "Mick",
@@ -69,4 +67,22 @@ describe('API Routes', () => {
       request(server)
     })
   })
+
+  // describe('/PUT a client', () => {
+  //   it('can update an existing client', () => {
+  //     let clientToUpdate = {
+  //       firstName: "Bob",
+  //       lastName: "Kent",
+  //       email: "super@man.com",
+  //       phone: "1234567890",
+  //       userId: 1
+  //     }
+  //     request(server)
+  //       .put(`/api/client/${2}`, clientToUpdate)
+  //       .then(res => {
+  //         expect(200)
+  //         expect(res.body.firstName).to.be.equal('Bob')
+  //       })
+  //   })
+  // })
 })
